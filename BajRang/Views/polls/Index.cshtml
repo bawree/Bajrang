@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BajRang.Models.polls>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+
+<div class="col-md-6">
+    @{ int i = 0;}
+    @foreach (var item in ViewBag.DisplayList)
+    {
+
+        <div class="panel panel-primary" style="background-color:@ViewBag.Color[i]">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-circle-arrow-right"></span>@item.Question
+                </h3>
+            </div>
+            <div class="panel-footer">
+
+                <h1>@item.PollId</h1>
+                @{
+                    string s = "polls/Positive/" + item.PollId;
+                }
+
+                <form method="get" action="/polls/Positive/@item.PollId" style="float:left;">
+                    <input type="submit" value="@item.Option1" />
+                </form>
+
+
+
+                <form method="get" action="/polls/Negative/@item.PollId" style="float:right;">
+                    <input type="submit" value="@item.Option2" />
+                </form>
+
+            </div>
+            <br />
+
+            @{ i = i < 5 ? i + 1 : 0;}
+            <br />
+        </div>
+
+
+    }
+
+    <br />
+    <br />
+    <div>
+        @Html.ActionLink("Create Poll", "Create")
+    </div>
+</div>
+
+
