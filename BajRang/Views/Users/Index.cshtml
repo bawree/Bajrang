@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BajRang.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Session['Username']
+<p>
+    @Html.ActionLink("Registration","Register")
+    @Html.ActionLink("Login user", "Login")
+</p>

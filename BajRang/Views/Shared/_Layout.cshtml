@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+   
     @Scripts.Render("~/bundles/modernizr")
 
     @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
@@ -12,7 +12,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
     <!------ Include the above in your HEAD tag ---------->
-    @*<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
               crossorigin="anonymous">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -20,8 +20,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
                 crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                crossorigin="anonymous"></script>*@
+                crossorigin="anonymous"></script>
 </head>
+
+
 <body>
     <div class="jumbotron">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +50,7 @@
                             <a class="nav-link" href="Events/Index">Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Polls</a>
+                            <a class="nav-link" href="polls/Index">Polls</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Your Stats</a>
@@ -64,23 +66,31 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <div class="h5">@@LeeCross</div>
-                        <div class="h7 text-muted">Fullname : Miracles Lee Cross</div>
+                        <div class="h5">@Session["Username"]</div>
+                        <div class="h7 text-muted">Fullname :@Session["Name"]</div>
                         <div class="h7">
-                            Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-                            etc.
+                            Hii I love to give back to Nature as well as i can.
+                            .Here to spread Love and Care...Looking forward to making an impact
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <div class="h6 text-muted">Followers</div>
-                            <div class="h5">5.2342</div>
+                            <div class="h6 text-muted">No of Events</div>
+                            <div class="h5">
+                                @{
+                                    Html.RenderAction("GetTotal", "Events");
+                                                        }
+                                                    </div>
                         </li>
                         <li class="list-group-item">
-                            <div class="h6 text-muted">Following</div>
-                            <div class="h5">6758</div>
+                            <div class="h6 text-muted">No of Polls</div>
+                            <div class="h5">
+                                @{
+                                    Html.RenderAction("GetTotal", "polls");
+                                                        }
+                                                    </div>
                         </li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                        <li class="list-group-item">Located at Banaras</li>
                     </ul>
                 </div>
             </div>
@@ -88,30 +98,14 @@
             @RenderBody()
 
             <div class="col-md-3">
-                <div class="card gedf-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the
-                            card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <div class="card gedf-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the
-                            card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
+                @{
+                    Html.RenderAction("GetLatest", "Events");
+                }
+
+                @{
+                    Html.RenderAction("GetLatest", "polls");
+                }
+
             </div>
         </div>
     </div>
