@@ -1,0 +1,64 @@
+﻿
+@model IEnumerable<BajRang.Models.User>
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+<h2>LoggedIn</h2>
+@{
+    var n = Session["UserId"];
+    var x = Session["Email"];
+    var a = Session["Username"];
+    var b = Session["Name"];
+    var c = Session["Contact"];
+}
+<fieldset>
+    <legend>
+        @if (Session["Username"] != null)
+        {
+            <text>
+                Welcome  @b!!! 
+            </text>
+        }
+    </legend>
+</fieldset>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th></th>
+    </tr>
+
+    
+        <tr>
+            <td>
+                @a
+            </td>
+            <td>
+                @b
+            </td>
+            <td>
+                @x
+            </td>
+            <td>
+                @c
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id =  @n})
+                @Html.ActionLink("Logout", "Index")
+            </td>
+        </tr>
+ 
+
+</table>

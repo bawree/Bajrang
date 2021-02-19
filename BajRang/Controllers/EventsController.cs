@@ -14,12 +14,28 @@ namespace BajRang.Controllers
     public class EventsController : Controller
     {
         private EventContext db = new EventContext();
-
+        
         // GET: Events
         public ActionResult Index()
         {
             ViewBag.DisplayList = db.Events.ToList();
+            
             return View(db.Events.ToList());
+        }
+        [ChildActionOnly]
+        public ActionResult GetTotal()
+        {
+            int x = db.Events.ToList().Count;
+            ViewBag.tot = x;
+            return PartialView("GetTotal");
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetLatest()
+        {
+            List<Event> x = db.Events.ToList();
+            ViewBag.lat =x.Last();
+            return PartialView("GetLatest");
         }
 
         public JsonResult GetEvents()

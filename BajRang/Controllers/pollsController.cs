@@ -23,6 +23,24 @@ namespace BajRang.Controllers
             return View(db.polls.ToList());
             
         }
+        [ChildActionOnly]
+        public ActionResult GetTotal()
+        {
+            int x = db.polls.ToList().Count;
+            ViewBag.tot = x;
+            return PartialView("GetTotal");
+
+            
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetLatest()
+        {
+            List<polls> x = db.polls.ToList();
+            ViewBag.lat = x.Last();
+            return PartialView("GetLatest");
+        }
+
 
         // GET: polls/Details/5
         public ActionResult Details(int? id)
