@@ -18,7 +18,6 @@ namespace BajRang.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage ="Contact Required")]
-        [RegularExpression(@"^[0-9]",ErrorMessage ="Contact number is wrong")]
         public int Contact { get; set; }
 
         [Required(ErrorMessage = "Email Id Required")]
