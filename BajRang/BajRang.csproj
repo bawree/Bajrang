@@ -176,6 +176,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Polls\Index.cshtml" />
     <Content Include="Views\Polls\Create.cshtml" />
+    <Content Include="Views\Polls\Yes.cshtml" />
+    <Content Include="Views\Polls\No.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
