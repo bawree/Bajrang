@@ -53,7 +53,7 @@ namespace BajRang.Controllers
         // POST: Polls/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "POllId,Question,Active")] Poll @poll)
+        public ActionResult Create([Bind(Include = "POllId,Question,Active,Yes,No")] Poll @poll)
         {
             if (ModelState.IsValid)
             {
@@ -65,19 +65,51 @@ namespace BajRang.Controllers
             return View(poll);
         }
 
+        //YES: To store yes
+
+        public void Yes(int? id)
+        {
+            if (id == null)
+            {
+                return;
+            }
+            Poll @poll = db.Polls.Find(id);
+            if (@poll == null)
+            {
+                return;
+            }
+            poll.Yes++;
+        }
+
+        // No : To store no
+
+        public void No(int? id)
+        {
+            if (id == null)
+            {
+                return;
+            }
+            Poll @poll = db.Polls.Find(id);
+            if (@poll == null)
+            {
+                return;
+            }
+            poll.No++;
+        }
         // GET: Polls/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             return View();
         }
 
         // POST: Polls/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+               // if(collection[])
 
                 return RedirectToAction("Index");
             }
