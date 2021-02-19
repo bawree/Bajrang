@@ -1,0 +1,70 @@
+﻿@model BajRang.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="col-md-5">
+    <h4> Delete Event</h4>
+    <hr />
+    <dl class="dl-horizontal col-md-5">
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Partcipant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Partcipant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThemeColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThemeColor)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
