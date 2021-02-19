@@ -9,6 +9,10 @@ namespace BajRang.Context
 {
     public class UserContext:DbContext
     {
+        public UserContext():base("ConStr")
+            {
+            
+            }
         public DbSet<Users> Users { get; set; }
         public DbSet<OldUsers> OldUsers { get; set; }
     }
