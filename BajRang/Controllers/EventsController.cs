@@ -70,7 +70,7 @@ namespace BajRang.Controllers
         }
 
         // GET: Events/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id) //(int? id,String? str)
         {
             if (id == null)
             {
