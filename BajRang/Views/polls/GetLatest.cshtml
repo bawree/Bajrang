@@ -1,5 +1,5 @@
-﻿
-
+﻿@if (ViewBag.cnt > 0)
+{
 <div class="card gedf-card">
     <div class="card-body">
         <h5 class="card-title">@ViewBag.lat.Question</h5>
@@ -12,3 +12,9 @@
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>
+}
+
+else
+{
+    <h3>No Polls to display</h3>
+}
