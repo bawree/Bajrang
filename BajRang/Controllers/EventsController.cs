@@ -34,7 +34,12 @@ namespace BajRang.Controllers
         public ActionResult GetLatest()
         {
             List<Event> x = db.Events.ToList();
-            ViewBag.lat =x.Last();
+            ViewBag.cnt = x.Count;
+            if (x.Count > 0)
+            {
+                ViewBag.lat = x.Last();
+            }
+            
             return PartialView("GetLatest");
         }
 
