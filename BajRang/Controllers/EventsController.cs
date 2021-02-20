@@ -94,6 +94,11 @@ namespace BajRang.Controllers
         {
             if (Session["Username"] == null)
                 return RedirectToAction("Login", "Users");
+            if(@event.End<@event.Start)
+            {
+                ViewBag.Error = "End Date Must be Greate than Start Date";
+                return RedirectToAction("Create");
+            }
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
