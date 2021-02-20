@@ -18,6 +18,7 @@ namespace BajRang.Models
         [MinLength(5)]
         public string Content { get; set; }
 
+        public string Username { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
         public int liked { get; set; }

@@ -46,6 +46,7 @@ namespace BajRang.Controllers
                 return RedirectToAction("Login", "Users");
             if (ModelState.IsValid)
             {
+                post.Username =(string) Session["Username"];
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
