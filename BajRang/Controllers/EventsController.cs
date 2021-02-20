@@ -18,6 +18,9 @@ namespace BajRang.Controllers
         // GET: Events
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
+
             ViewBag.DisplayList = db.Events.ToList();
             
             return View(db.Events.ToList());
@@ -25,6 +28,8 @@ namespace BajRang.Controllers
         [ChildActionOnly]
         public ActionResult GetTotal()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             int x = db.Events.ToList().Count;
             ViewBag.tot = x;
             return PartialView("GetTotal");
@@ -33,6 +38,8 @@ namespace BajRang.Controllers
         [ChildActionOnly]
         public ActionResult GetLatest()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             List<Event> x = db.Events.ToList();
             ViewBag.cnt = x.Count;
             if (x.Count > 0)
@@ -46,7 +53,8 @@ namespace BajRang.Controllers
         public JsonResult GetEvents()
         {
             
-                var events = db.Events.ToList();
+
+            var events = db.Events.ToList();
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             
         }
@@ -54,6 +62,8 @@ namespace BajRang.Controllers
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -69,7 +79,9 @@ namespace BajRang.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-             return View();
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
+            return View();
             //return PartialView("~/Views/Events/Create.chtml");
         }
 
@@ -80,6 +92,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EventID,Subject,Description,Partcipant,Start,End,ThemeColor")] Event @event)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
@@ -93,6 +107,8 @@ namespace BajRang.Controllers
         // GET: Events/Edit/5
         public ActionResult Edit(int? id) //(int? id,String? str)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,6 +128,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EventID,Subject,Description,Partcipant,Start,End,ThemeColor")] Event @event)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (ModelState.IsValid)
             {
                 db.Entry(@event).State = EntityState.Modified;
@@ -124,6 +142,8 @@ namespace BajRang.Controllers
         // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -141,6 +161,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();

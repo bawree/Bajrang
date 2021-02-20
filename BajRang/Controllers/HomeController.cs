@@ -10,6 +10,8 @@ namespace BajRang.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             return View();
         }
 

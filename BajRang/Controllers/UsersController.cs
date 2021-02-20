@@ -40,7 +40,8 @@ namespace BajRang.Controllers
                 pollsContext db2 = new pollsContext();
                 Session["NoP"] = db2.polls.ToList().Count;
 
-                return RedirectToAction("LoggedIn");
+                return RedirectToAction("Index", "Post", new { area = "" });
+                //return RedirectToAction("LoggedIn");
             }
             else
             {
@@ -95,8 +96,8 @@ namespace BajRang.Controllers
                         Session["Name"] = obj.Name.ToString();
                         Session["Contact"] = obj.Contact.ToString();
                         Session["Email"] = obj.Email.ToString();
-                return RedirectToAction("LoggedIn");
-                    }
+                return RedirectToAction("Index", "Post", new { area = "" });
+            }
                 
             
             Messagebox("Incorrect credentials");

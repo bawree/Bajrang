@@ -18,6 +18,8 @@ namespace BajRang.Controllers
         // GET: polls
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             ViewBag.DisplayList = db.polls.ToList();
             ViewBag.Color = new List<string>() { "#f3934c", "#a95a51", "#c1c1c3", "#2f3c51", "#f39342" };
             return View(db.polls.ToList());
@@ -47,9 +49,24 @@ namespace BajRang.Controllers
         }
 
 
+        [ChildActionOnly]
+        public ActionResult PollResult()
+        {
+            List<polls> x = db.polls.ToList();
+
+            ViewBag.cnt = x.Count;
+            if (x.Count > 0)
+            {
+                ViewBag.obj = x;
+            }
+            return PartialView("PollResult");
+        }
+
         // GET: polls/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -65,6 +82,8 @@ namespace BajRang.Controllers
         // GET: polls/Create
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             return View();
         }
 
@@ -75,6 +94,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PollId,Question,Option1,Option2,Active,Yes,No")] polls polls)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (ModelState.IsValid)
             {
                 db.polls.Add(polls);
@@ -91,7 +112,9 @@ namespace BajRang.Controllers
 
         public ActionResult Positive(int id)
         {
-            
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
+
             polls polls = db.polls.Find(id);
             if (polls == null)
             {
@@ -112,6 +135,8 @@ namespace BajRang.Controllers
 
         public ActionResult Negative(int id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
 
             polls polls = db.polls.Find(id);
             if (polls == null)
@@ -137,6 +162,8 @@ namespace BajRang.Controllers
         // GET: polls/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -156,6 +183,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PollId,Question,Option1,Option2,Active,Yes,No")] polls polls)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (ModelState.IsValid)
             {
                 db.Entry(polls).State = EntityState.Modified;
@@ -168,6 +197,8 @@ namespace BajRang.Controllers
         // GET: polls/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -185,6 +216,8 @@ namespace BajRang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Username"] == null)
+                return RedirectToAction("Login", "Users");
             polls polls = db.polls.Find(id);
             db.polls.Remove(polls);
             db.SaveChanges();

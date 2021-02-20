@@ -1,0 +1,36 @@
+﻿<style>
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    div {
+        text-align: center;
+    }
+</style>
+
+<div class="col-md=6">
+    @if (@ViewBag.cnt > 0)
+    {
+
+        foreach (var item in ViewBag.obj)
+        {
+
+            <h1>@item.Question</h1>
+
+            <p>@item.Option1 : @item.Yes</p>
+            <p>@item.Option2 : @item.No</p>
+            <br />
+            <br />
+        }
+
+    }
+    else
+    {
+        <h2> NO POLLS AVALIABLE</h2>
+    }
+
+</div>
