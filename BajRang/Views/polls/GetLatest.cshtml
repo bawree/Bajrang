@@ -1,4 +1,4 @@
-﻿@if (ViewBag.cnt > 0)
+﻿@if (@ViewBag.cnt > 0)
 {
 <div class="card gedf-card">
     <div class="card-body">
@@ -8,13 +8,16 @@
             @ViewBag.lat.Option1: @ViewBag.lat.Yes<br/>
             @ViewBag.lat.Option2: @ViewBag.lat.No
         </p>
-        <a href="polls/Index" class="card-link">Poll link</a>
+        <a href="~/polls/Index" class="card-link">Poll link</a>
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>
+
+
+    
 }
 
 else
 {
-    <h3>No Polls to display</h3>
+    <h3>No PoLLs </h3>
 }
